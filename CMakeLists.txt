@@ -15,9 +15,9 @@ if(WIN32)
 else()
     set(USERHOME $ENV{HOME})
 endif()
-set(sdkVersion 2.1.1)
-set(toolchainVersion 14_2_Rel1)
-set(picotoolVersion 2.1.1)
+set(sdkVersion 2.1.0)
+set(toolchainVersion 13_3_Rel1)
+set(picotoolVersion 2.1.0)
 set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
     include(${picoVscode})
@@ -50,18 +50,10 @@ pico_enable_stdio_usb(iot_security_lab 1)
 
 # Add the standard library to the build
 target_link_libraries(iot_security_lab
-        # Biblioteca padrão do Pico SDK, que fornece funções básicas para o RP2040 (GPIO, temporizadores, UART, etc.).
         pico_stdlib
-        # Oferece suporte Wi-Fi (CYW43) com LwIP (pilha TCP/IP) em um modo thread-safe em segundo plano.
         pico_cyw43_arch_lwip_threadsafe_background
-        # Adiciona suporte a cliente MQTT sobre o LwIP.
         pico_lwip_mqtt
-        # A pilha Lightweight IP (LwIP), que fornece funcionalidades TCP/IP (HTTP, MQTT, UDP, DHCP, etc.).
-        pico_lwip
-        # O driver do chip Wi-Fi CYW43 (usado no Pico W).
-        pico_cyw43_driver
-        # pico_time
-        # pico_unique_id
+        pico_time
         )
 
 # Add the standard include files to the build
